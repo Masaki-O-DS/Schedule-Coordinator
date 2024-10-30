@@ -3,6 +3,7 @@ import Calendar from "../Components/Calender";
 import InputText from "../Components/InputText";
 import Button from "../Components/Button";
 import useNavigation from "../hooks/useNavigation";
+import Header from "../Components/Header";
 
 export const EditSchedulePage = () => {
   const [eventName, setEventName] = useState("");
@@ -31,56 +32,54 @@ export const EditSchedulePage = () => {
 
   return (
     <>
+      <Header />
       {/* ページの上半分 */}
       <div className="w-full h-3/5 flex flex-row">
         {/* 上半分の左部分 */}
-        <div className="w-2/4 flex-col flex items-center ">
-          <p>日付を選択してください</p>
+        <div className="w-2/4 flex-col flex items-center">
+          <p className="mt-10">日付を選択してください</p>
           <Calendar />
         </div>
 
         {/* 上半分の右部分 */}
-        <div className="w-2/4 flex flex-col items-center">
-          <div className="flex flex-row mb-5 h-24 items-center">
-            <div className="flex flex-col ">
+        <div className="flex flex-row">
+          <div className="h-full w-3/12"></div>
+          <div className="w-2/4 flex flex-col ">
+            <div className="flex flex-row mb-5 h-24 items-center">
               <InputText
-                text={"イベント名を入力"}
+                text={"イベント名"}
                 onChangeFunc={handleInputEventName}
               />
             </div>
-            <Button text={"Add"} addCss={"ml-5 mt-7"} />
-          </div>
-          <div className="flex flex-row mb-5">
-            <div className="flex flex-col">
-              <InputText
-                text={"イベント内容を入力"}
-                onChangeFunc={handleInputEventContent}
-              />
+            <div className="flex flex-row mb-5">
+              <div className="flex flex-row mb-5 h-24 items-center">
+                <InputText
+                  text={"イベント内容"}
+                  onChangeFunc={handleInputEventContent}
+                />
+              </div>
             </div>
-            <Button text={"Add"} addCss={"ml-5 mt-7"} />
-          </div>
-          <div className="flex flex-row mb-5">
-            <div className="flex flex-col ">
+            <div className="flex flex-row mb-5 h-24 items-center ">
               <InputText
-                text={"参加メンバーを入力"}
+                text={"参加メンバー"}
                 onChangeFunc={handleInputMember}
               />
+              <Button
+                text={"Add"}
+                onClickFunc={onAddMember}
+                addCss={"ml-5 mt-3"}
+              />
             </div>
-            <Button
-              text={"Add"}
-              addCss={"ml-5 mt-7"}
-              onClickFunc={onAddMember}
-            />
-          </div>
-          <div className="w-9/12 bg-red-300 flex flex-row flex-wrap">
-            {members.length > 0 &&
-              members.map((member) => {
-                return (
-                  <div key={member} className="w-12 h-8 bg-slate-400 m-3">
-                    {member}
-                  </div>
-                );
-              })}
+            <div className="w-9/12 bg-red-300 flex flex-row flex-wrap">
+              {members.length > 0 &&
+                members.map((member) => {
+                  return (
+                    <div key={member} className="w-12 h-8 bg-slate-400 m-3">
+                      {member}
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>

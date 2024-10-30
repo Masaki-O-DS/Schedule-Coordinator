@@ -1,10 +1,11 @@
 import React from "react";
-import bgImage from "../ocean-bg-image.webp";
 
 const Title = () => {
   return (
-    <div className="text-black text-4xl w-full ">
-      <div>Schedule Coordinator</div>
+    <div className="bg-midnight-blue  w-full h-40 flex justify-center items-center">
+      <div className="animate-tracking-in-expand text-white font-anton text-6xl">
+        SCHEDULE COORDINATOR
+      </div>
     </div>
   );
 };
