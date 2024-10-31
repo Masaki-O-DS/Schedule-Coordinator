@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputText = ({ text, onChangeFunc }) => {
+const InputText = ({ value, text, onChangeFunc }) => {
   return (
     <div className="input flex flex-col w-fit static">
       <label
@@ -10,8 +10,9 @@ const InputText = ({ text, onChangeFunc }) => {
         {text};
       </label>
       <input
-        id="password"
+        id={text}
         type="text"
+        value={value}
         placeholder="Write here..."
         name="input"
         onChange={(e) => onChangeFunc(e)}
