@@ -50,7 +50,7 @@ export const EditSchedulePage = () => {
           {/* 上半分の右部分 */}
           <div className="flex flex-row w-2/4">
             <div className="h-full w-3/12"></div>
-            <div className="w-9/12 flex flex-col ">
+            <div className="w-9/12 flex flex-col items-start justify-center ">
               {/* イベント名記入欄 */}
               <div className="flex flex-row h-20 items-center">
                 <InputText
