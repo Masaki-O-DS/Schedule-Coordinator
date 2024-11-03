@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TopPage from "./Pages/TopPage";
 import { EditSchedulePage } from "./Pages/EditSchedulePage";
 import SelectDatePage from "./Pages/SelectDatePage";
+import ShareLinkPage from "./Pages/ShareLinkPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             element={<EditSchedulePage />}
           ></Route>
           <Route path="/select-date-page" element={<SelectDatePage />}></Route>
+          <Route path="/share-link-page" element={<ShareLinkPage />}></Route>
         </Routes>
       </div>
     </Router>

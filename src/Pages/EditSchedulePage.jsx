@@ -4,35 +4,50 @@ import InputText from "../Components/InputText";
 import Button from "../Components/Button";
 import useNavigation from "../hooks/useNavigation";
 import Header from "../Components/Header";
+import SummaryTable from "../Components/SummaryTable";
+import { useDispatch, useSelector } from "react-redux";
+import { addDate } from "../features/selectTime";
 
 export const EditSchedulePage = () => {
   const [eventName, setEventName] = useState("");
   const [eventContent, setEventContent] = useState("");
   const [memberName, setMemberName] = useState("");
   const [members, setMembers] = useState([]);
-
   const { openSelectDatePage } = useNavigation();
+  const dispatch = useDispatch();
+  const { dayList } = useSelector((state) => state.scheduleControl);
 
+  //イベント名を記入時のイベントハンドラー
   const handleInputEventName = (e) => {
     setEventName(e.target.value);
   };
 
+  //イベント内容を記入時のイベントハンドラー
   const handleInputEventContent = (e) => {
     setEventContent(e.target.value);
   };
 
+  //メンバー追加時のイベントハンドラー
   const handleInputMember = (e) => {
     setMemberName(e.target.value);
   };
 
   const onAddMember = () => {
-    setMembers([...members, memberName]);
-    setMemberName("");
+    if (memberName !== "") {
+      setMembers([...members, memberName]);
+      setMemberName("");
+    }
   };
 
   const handleDeleteMemberList = (deleteMember) => {
     const newMembers = members.filter((member) => member !== deleteMember);
     setMembers(newMembers);
+  };
+
+  //次のページに行くときに、selectTimeSliceの初期値をdayList分だけ作成する
+  const onClickToNextPage = () => {
+    dispatch(addDate(dayList));
+    openSelectDatePage();
   };
 
   return (
@@ -49,37 +64,39 @@ export const EditSchedulePage = () => {
 
           {/* 上半分の右部分 */}
           <div className="flex flex-row w-2/4">
-            <div className="h-full w-3/12"></div>
-            <div className="w-9/12 flex flex-col items-start justify-center ">
-              {/* イベント名記入欄 */}
-              <div className="flex flex-row h-20 items-center">
-                <InputText
-                  text={"イベント名"}
-                  onChangeFunc={handleInputEventName}
-                />
-              </div>
-              {/* イベント内容記入欄 */}
-              <div className="flex flex-row">
+            <div className="h-full w-1/12"></div>
+            <div className="w-full">
+              <div className="w-9/12 flex  flex-col items-start justify-center ml-10">
+                {/* イベント名記入欄 */}
                 <div className="flex flex-row h-20 items-center">
                   <InputText
-                    text={"イベント内容"}
-                    onChangeFunc={handleInputEventContent}
+                    text={"イベント名"}
+                    onChangeFunc={handleInputEventName}
                   />
                 </div>
-              </div>
-              {/* 参加メンバー記入欄 */}
-              <div className="flex flex-row h-20 items-center ">
-                <InputText
-                  value={memberName}
-                  text="参加メンバー"
-                  onChangeFunc={handleInputMember}
-                />
-                <Button
-                  text={"Add"}
-                  onClickFunc={onAddMember}
-                  addCss={"ml-5 mt-3"}
-                  isDisabled={members.length < 10 ? false : true}
-                />
+                {/* イベント内容記入欄 */}
+                <div className="flex flex-row">
+                  <div className="flex flex-row h-20 items-center">
+                    <InputText
+                      text={"イベント内容"}
+                      onChangeFunc={handleInputEventContent}
+                    />
+                  </div>
+                </div>
+                {/* 参加メンバー記入欄 */}
+                <div className="flex flex-row h-20 items-center ">
+                  <InputText
+                    value={memberName}
+                    text="参加メンバー"
+                    onChangeFunc={handleInputMember}
+                  />
+                  <Button
+                    text={"Add"}
+                    onClickFunc={onAddMember}
+                    addCss={"ml-5 mt-3"}
+                    isDisabled={members.length < 10 ? false : true}
+                  />
+                </div>
               </div>
               {/* 追加されたネームカード */}
               <div className="w-full grid grid-cols-5 pr-10 mt-4">
@@ -101,32 +118,22 @@ export const EditSchedulePage = () => {
         </div>
 
         {/* ページの下半分 */}
-        <div className="bg-white w-11/12 h-2/4 flex justify-centers mt-3">
-          <div className="w-11/12 h-4/6 bg-slate-300 flex border-2 border-solid border-gray-500 border-opacity-55">
-            <div className="w-3/12 bg-yellow-50 grid  justify-center items-center grid-rows-4 h-full">
-              <p>スケジュール調整開始日</p>
-              <p>イベント名</p>
-              <p>イベント内容</p>
-              <p>参加メンバー</p>
-            </div>
-            <div className="w-9/12 bg-blue-50   grid px-5 justify-start items-center grid-rows-4">
-              <p>仮</p>
-              <p>{eventName}</p>
-              <p>{eventContent}</p>
-              <div className="">
-                {members.length > 0 &&
-                  members.map((member) => {
-                    return (
-                      <p key={member} className="mx-1">
-                        {member}
-                      </p>
-                    );
-                  })}
-              </div>
-            </div>
+        <div className=" w-full h-2/4  mt-4 grid grid-cols-12 grid-rows-1  items-center bg-midnight-blue">
+          <div className="col-span-11 flex justify-center h-5/6">
+            <SummaryTable
+              eventName={eventName}
+              eventContent={eventContent}
+              members={members}
+              dayList={dayList}
+            />
           </div>
-          <div className="w-1/12">
-            <Button text={"次へ"} onClickFunc={openSelectDatePage} />
+          <div className=" h-10 col-span-1">
+            <button
+              className="w-18 h-10 bg-white rounded px-3 hover:bg-lime-500 hover:text-white font-bold duration-200 active:scale-90"
+              onClick={onClickToNextPage}
+            >
+              次へ
+            </button>
           </div>
         </div>
       </div>

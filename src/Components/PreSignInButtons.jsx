@@ -5,7 +5,7 @@ const PostSignInButtons = () => {
   const addCss = "w-64";
 
   return (
-    <div className=" py-10 flex flex-col items-center justify-around h-2/4">
+    <div className=" py-10 flex w-2/4 flex-col items-center justify-around h-2/4">
       <p className="text-red-500 font-bold text-2xl">ようこそGuest様</p>
       <Button text={"新たに日程調整を始まる"} addCss={addCss} />
       <Button text={"日程調整の確認"} addCss={addCss} />

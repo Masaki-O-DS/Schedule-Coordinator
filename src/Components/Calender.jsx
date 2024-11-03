@@ -1,42 +1,47 @@
 import { eachDayOfInterval } from "date-fns";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Datepicker from "react-tailwindcss-datepicker";
+import { setDayList } from "../features/scheduleControl";
+import { dayStrToDateObj } from "../utils/time";
 
 const Calendar = () => {
+  const dispatch = useDispatch();
+  const { dayList } = useSelector((state) => state.scheduleControl);
   const [date, setDate] = useState({
     startDate: null,
     endDate: null,
   });
-  const [dayList, setDayList] = useState([]);
-  const [dayId, setDayId] = useState("");
 
+  //カレンダーの設定
+  const MIN_DATE = new Date();
+  const MAX_DATE = new Date();
+  MAX_DATE.setDate(MAX_DATE.getDate() + 13);
+
+  //指定期間内の全日程を取得
   const getDatesList = (startDate, endDate) => {
     return eachDayOfInterval({ start: startDate, end: endDate });
   };
 
+  //カレンダーで指定した全日程をDayListに格納
   const onDaysList = (newValue) => {
     const start = newValue.startDate;
     const end = newValue.endDate;
     const dateList = getDatesList(start, end);
-    setDayList([...dateList]);
+    dispatch(setDayList(dateList.map((day) => day.toISOString())));
   };
 
-  const MIN_DATE = new Date();
-
-  const MAX_DATE = new Date();
-  MAX_DATE.setDate(MAX_DATE.getDate() + 14);
-
+  //カレンダーのリセットボタンを押してDayListとdateを初期化
   const handleResetDate = () => {
     setDate({ startDate: null, endDate: null });
-    setDayList([]);
+    dispatch(setDayList([]));
   };
 
+  //日程の中で不要な日は削除する
   const handleDeleteDay = (e) => {
-    console.log(e.target.id);
     const targetButtonId = e.target.id;
     const newDayList = dayList.toSpliced(targetButtonId, 1);
-    console.log(newDayList);
-    setDayList(newDayList);
+    dispatch(setDayList(newDayList));
   };
 
   return (
@@ -65,18 +70,18 @@ const Calendar = () => {
         不要な日程は下のボタンを押して<span className="text-red-500">削除</span>
         してください
       </p>
-      <div className=" gap-2  pl-14 pr-10 grid-cols-14">
+      <div className=" gap-2  pl-14 pr-10 grid-cols-5 grid-rows-3">
         {dayList.length > 0 &&
           dayList.map((dayobj, index) => {
-            const month = dayobj.getMonth();
-            const day = dayobj.getDate();
+            const { month, day } = dayStrToDateObj(dayobj);
+
             return (
               <button
-                className="bg-white rounded border border-gray-400 w-20 mt-3 px-3 mx-3 text-sm p-1 hover:bg-red-500 duration-200 active:scale-90 flex-wrap "
+                className="bg-white rounded border border-gray-400 w-12 mt-3 px-1 mx-3 text-sm p-1 hover:bg-red-500 duration-200 active:scale-90 flex-wrap "
                 id={index}
                 key={index}
                 onClick={handleDeleteDay}
-              >{`${month}/${day}`}</button>
+              >{`${month + 1}/${day}`}</button>
             );
           })}
       </div>

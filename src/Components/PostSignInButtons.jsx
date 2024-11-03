@@ -7,8 +7,8 @@ const PostSignInButtons = () => {
   const { openEditSchedulePage } = useNavigation();
 
   return (
-    <div className=" py-10 bg-white flex flex-col items-center justify-around h-2/4">
-      <p className="text-white font-bold text-2xl">ようこそGuest様</p>
+    <div className="  bg-white flex w-2/4 flex-col items-center justify-around h-3/4 ">
+      <p className="text-black font-bold text-2xl">ようこそGuest様</p>
       <Button
         text={"新たに日程調整を始まる"}
         addCss={addCss}
