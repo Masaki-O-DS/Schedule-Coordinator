@@ -2,12 +2,12 @@ import { eachDayOfInterval } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Datepicker from "react-tailwindcss-datepicker";
-import { setDayList } from "../features/scheduleControl";
+import { setDayList } from "../features/schedule";
 import { dayStrToDateObj } from "../utils/time";
 
 const Calendar = () => {
   const dispatch = useDispatch();
-  const { dayList } = useSelector((state) => state.scheduleControl);
+  const { dayList } = useSelector((state) => state.schedule);
   const [date, setDate] = useState({
     startDate: null,
     endDate: null,

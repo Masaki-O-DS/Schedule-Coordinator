@@ -6,6 +6,7 @@ import { setLogout } from "../features/login";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { nanoid } from "nanoid";
+import { setID } from "../features/schedule";
 
 const PostSignInButtons = () => {
   const addCss = "w-64";
