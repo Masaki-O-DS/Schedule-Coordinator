@@ -5,7 +5,7 @@ import Selection from "../Components/Selection";
 import useNavigation from "../hooks/useNavigation";
 
 const SelectDatePage = () => {
-  const { dayList } = useSelector((state) => state.scheduleControl);
+  const { dayList } = useSelector((state) => state.schedule);
   const { openShareLinkPage } = useNavigation();
 
   //確定ボタンを押した時の処理

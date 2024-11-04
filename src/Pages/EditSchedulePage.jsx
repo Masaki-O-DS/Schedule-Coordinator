@@ -5,7 +5,7 @@ import useNavigation from "../hooks/useNavigation";
 import Header from "../Components/Header";
 import SummaryTable from "../Components/SummaryTable";
 import { useDispatch, useSelector } from "react-redux";
-import { addDate } from "../features/selectTime";
+import { addDate } from "../features/schedule";
 
 export const EditSchedulePage = () => {
   const [eventName, setEventName] = useState("");
@@ -14,19 +14,16 @@ export const EditSchedulePage = () => {
   const [members, setMembers] = useState([]);
   const { openSelectDatePage } = useNavigation();
   const dispatch = useDispatch();
-  const { dayList } = useSelector((state) => state.scheduleControl);
+  const { dayList } = useSelector((state) => state.schedule);
 
-  //イベント名を記入時のイベントハンドラー
   const handleInputEventName = (e) => {
     setEventName(e.target.value);
   };
 
-  //イベント内容を記入時のイベントハンドラー
   const handleInputEventContent = (e) => {
     setEventContent(e.target.value);
   };
 
-  //メンバー追加時のイベントハンドラー
   const handleInputMember = (e) => {
     setMemberName(e.target.value);
   };
@@ -43,7 +40,6 @@ export const EditSchedulePage = () => {
     setMembers(newMembers);
   };
 
-  //次のページに行くときに、selectTimeSliceの初期値をdayList分だけ作成する
   const onClickToNextPage = () => {
     dispatch(addDate(dayList));
     openSelectDatePage();
@@ -65,7 +61,7 @@ export const EditSchedulePage = () => {
           <div className="flex flex-row w-2/4">
             <div className="h-full w-1/12"></div>
             <div className="w-full">
-              <div className="w-9/12 flex  flex-col items-start justify-center ml-10">
+              <div className="w-9/12 flex flex-col items-start justify-center ml-10">
                 {/* イベント名記入欄 */}
                 <div className="flex flex-row h-20 items-center">
                   <InputText
@@ -96,6 +92,7 @@ export const EditSchedulePage = () => {
                         : "bg-gray-500 text-gray-400 border-none"
                     }`}
                     onClick={onAddMember}
+                    disabled={members.length >= 10}
                   >
                     Add
                   </button>
@@ -104,24 +101,22 @@ export const EditSchedulePage = () => {
               {/* 追加されたネームカード */}
               <div className="w-full grid grid-cols-5 pr-10 mt-4">
                 {members.length > 0 &&
-                  members.map((member) => {
-                    return (
-                      <button
-                        key={member}
-                        className="w-14 h-8 mt-2 rounded bg-slate-300 m-1 flex border border-gray-400 flex-col items-center justify-center hover:border-red-800 hover:bg-red-500 hover:text-white hover:font-bold"
-                        onClick={() => handleDeleteMemberList(member)}
-                      >
-                        <p className="text-xs ">{member}</p>
-                      </button>
-                    );
-                  })}
+                  members.map((member) => (
+                    <button
+                      key={member}
+                      className="w-14 h-8 mt-2 rounded bg-slate-300 m-1 flex border border-gray-400 flex-col items-center justify-center hover:border-red-800 hover:bg-red-500 hover:text-white hover:font-bold"
+                      onClick={() => handleDeleteMemberList(member)}
+                    >
+                      <p className="text-xs ">{member}</p>
+                    </button>
+                  ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* ページの下半分 */}
-        <div className=" w-full h-2/4  mt-4 grid grid-cols-12 grid-rows-1  items-center bg-midnight-blue">
+        <div className="w-full h-2/4 mt-4 grid grid-cols-12 grid-rows-1 items-center bg-midnight-blue">
           <div className="col-span-11 flex justify-center h-5/6">
             <SummaryTable
               eventName={eventName}
@@ -130,7 +125,7 @@ export const EditSchedulePage = () => {
               dayList={dayList}
             />
           </div>
-          <div className=" h-10 col-span-1">
+          <div className="h-10 col-span-1">
             <button
               className="w-18 h-10 bg-white rounded px-3 hover:bg-amber-500 hover:text-white font-bold duration-200 active:scale-90"
               onClick={onClickToNextPage}
