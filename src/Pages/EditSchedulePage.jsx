@@ -6,6 +6,11 @@ import Header from "../Components/Header";
 import SummaryTable from "../Components/SummaryTable";
 import { useDispatch, useSelector } from "react-redux";
 import { addDate } from "../features/schedule";
+import {
+  setEventContentToRedux,
+  setEventNameToRedux,
+  setMembersToRedux,
+} from "../features/eventDetails";
 
 export const EditSchedulePage = () => {
   const [eventName, setEventName] = useState("");
@@ -41,6 +46,9 @@ export const EditSchedulePage = () => {
   };
 
   const onClickToNextPage = () => {
+    dispatch(setEventNameToRedux(eventName));
+    dispatch(setEventContentToRedux(eventContent));
+    dispatch(setMembersToRedux(members));
     dispatch(addDate(dayList));
     openSelectDatePage();
   };

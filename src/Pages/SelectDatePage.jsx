@@ -3,13 +3,27 @@ import Header from "../Components/Header";
 import { useSelector } from "react-redux";
 import Selection from "../Components/Selection";
 import useNavigation from "../hooks/useNavigation";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const SelectDatePage = () => {
-  const { dayList } = useSelector((state) => state.schedule);
+  const { dayList, id } = useSelector((state) => state.schedule);
+  const selectTime = useSelector((state) => state.schedule.selectTime);
   const { openShareLinkPage } = useNavigation();
+  const { eventName, eventContent, members } = useSelector(
+    (state) => state.event
+  );
 
   //確定ボタンを押した時の処理
-  const onClickToNextPage = () => {
+  const onClickToNextPage = async () => {
+    await setDoc(doc(db, "schedules", id), {
+      eventName: eventName,
+      eventContent: eventContent,
+      members: members,
+      coordinatorName: auth.currentUser.displayName,
+      coordinatorId: auth.currentUser.uid,
+      coordinatorSchedule: selectTime,
+    });
     openShareLinkPage();
   };
   return (

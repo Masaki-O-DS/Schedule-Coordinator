@@ -6,9 +6,10 @@ import { setSelectDateTime } from "../features/schedule";
 
 const Selection = ({ date }) => {
   const [selected, setSelected] = useState(() => new Set());
-  const { selectTimeList } = useSelector(
-    (state) => state.schedule.selectTime[date] || { selectTimeList: [] }
-  );
+  // const { selectTimeList } = useSelector(
+  //   (state) => state.schedule.selectTime[date] || { selectTimeList: [] }
+  // );
+  const selectTime = useSelector((state) => state.schedule.selectTime);
 
   const { month, day } = dayStrToDateObj(date);
   const dispatch = useDispatch();
@@ -20,8 +21,8 @@ const Selection = ({ date }) => {
   }, [dispatch, date, selected]);
 
   useEffect(() => {
-    console.log("Updated selectTimeList:", selectTimeList);
-  }, [selectTimeList]);
+    console.log("Updated selectTime:", selectTime);
+  }, [selectTime]);
 
   const startTime = 9;
   const endTime = 24;

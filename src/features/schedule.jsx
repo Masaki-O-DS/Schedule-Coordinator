@@ -14,6 +14,7 @@ const scheduleSlice = createSlice({
     setDayList: (state, action) => {
       state.dayList = action.payload;
     },
+    //dayListを基に日を追加する
     addDate: (state, action) => {
       action.payload.forEach((day) => {
         if (!state.selectTime[day]) {
@@ -21,6 +22,7 @@ const scheduleSlice = createSlice({
         }
       });
     },
+    //選択された時間を更新する
     setSelectDateTime: (state, action) => {
       const { date, timeList } = action.payload;
       if (state.selectTime[date]) {
