@@ -8,6 +8,7 @@ const SelectDatePage = () => {
   const { dayList } = useSelector((state) => state.scheduleControl);
   const { openShareLinkPage } = useNavigation();
 
+  //確定ボタンを押した時の処理
   const onClickToNextPage = () => {
     openShareLinkPage();
   };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "../Components/Calender";
 import InputText from "../Components/InputText";
-import Button from "../Components/Button";
 import useNavigation from "../hooks/useNavigation";
 import Header from "../Components/Header";
 import SummaryTable from "../Components/SummaryTable";
@@ -100,12 +99,6 @@ export const EditSchedulePage = () => {
                   >
                     Add
                   </button>
-                  {/* <Button
-                    text={"Add"}
-                    onClickFunc={onAddMember}
-                    addCss={"ml-5 mt-3"}
-                    isDisabled={members.length < 10 ? false : true}
-                  /> */}
                 </div>
               </div>
               {/* 追加されたネームカード */}

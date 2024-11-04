@@ -23,7 +23,6 @@ day2: {selectTimeList : [13, 14, 15],}
     const selectTimeArray = Array.from(selected); //Setオブジェクトをdispatchでreducerに入れるとnon-serializedエラーが発生するため一度配列に変換
     const transformedTimeList = selectTimeArray.map((id) => id + 9); //IDを時刻に変換
     dispatch(setSelectDateTime({ date, timeList: transformedTimeList }));
-    console.log(selectTimeList);
   }, [dispatch, date, selected]);
 
   //デバッグ用

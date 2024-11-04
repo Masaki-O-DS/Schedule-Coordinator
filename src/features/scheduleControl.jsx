@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { dayList: [] };
 
-const scheduleControlSlice = createSlice({
-  name: "scheduleControl",
+const scheduleSlice = createSlice({
+  name: "schedule",
   initialState,
   reducers: {
     setDayList: (state, action) => {
