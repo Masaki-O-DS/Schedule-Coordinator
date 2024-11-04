@@ -5,6 +5,12 @@ export default function useNavigation() {
   const openEditSchedulePage = () => navigate("/edit-schedule-page");
   const openSelectDatePage = () => navigate("/select-date-page");
   const openShareLinkPage = () => navigate("/share-link-page");
+  const openTopPage = () => navigate("/");
 
-  return { openEditSchedulePage, openSelectDatePage, openShareLinkPage };
+  return {
+    openEditSchedulePage,
+    openSelectDatePage,
+    openShareLinkPage,
+    openTopPage,
+  };
 }

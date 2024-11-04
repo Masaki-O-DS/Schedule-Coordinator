@@ -90,12 +90,22 @@ export const EditSchedulePage = () => {
                     text="参加メンバー"
                     onChangeFunc={handleInputMember}
                   />
-                  <Button
+                  <button
+                    className={` w-16 bg-sky-200 border-2 border-solid border-blue-300 h-10 px-1 py-0.5 mt-4 ml-8 rounded ${
+                      members.length < 10
+                        ? "hover:bg-midnight-blue hover:text-white hover:font-bold duration-100"
+                        : "bg-gray-500 text-gray-400 border-none"
+                    }`}
+                    onClick={onAddMember}
+                  >
+                    Add
+                  </button>
+                  {/* <Button
                     text={"Add"}
                     onClickFunc={onAddMember}
                     addCss={"ml-5 mt-3"}
                     isDisabled={members.length < 10 ? false : true}
-                  />
+                  /> */}
                 </div>
               </div>
               {/* 追加されたネームカード */}
@@ -129,7 +139,7 @@ export const EditSchedulePage = () => {
           </div>
           <div className=" h-10 col-span-1">
             <button
-              className="w-18 h-10 bg-white rounded px-3 hover:bg-lime-500 hover:text-white font-bold duration-200 active:scale-90"
+              className="w-18 h-10 bg-white rounded px-3 hover:bg-amber-500 hover:text-white font-bold duration-200 active:scale-90"
               onClick={onClickToNextPage}
             >
               次へ
