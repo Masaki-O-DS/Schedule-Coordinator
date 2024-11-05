@@ -661,6 +661,42 @@ video {
   grid-row: span 2 / span 2;
 }
 
+.row-span-3{
+  grid-row: span 3 / span 3;
+}
+
+.row-start-2{
+  grid-row-start: 2;
+}
+
+.row-start-4{
+  grid-row-start: 4;
+}
+
+.row-start-5{
+  grid-row-start: 5;
+}
+
+.row-start-6{
+  grid-row-start: 6;
+}
+
+.row-start-7{
+  grid-row-start: 7;
+}
+
+.row-start-8{
+  grid-row-start: 8;
+}
+
+.row-start-9{
+  grid-row-start: 9;
+}
+
+.row-start-11{
+  grid-row-start: 11;
+}
+
 .m-1{
   margin: 0.25rem;
 }
@@ -673,11 +709,6 @@ video {
 .my-1{
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-}
-
-.my-3{
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
 }
 
 .my-5{
@@ -763,6 +794,18 @@ video {
 
 .mt-\[1px\]{
   margin-top: 1px;
+}
+
+.mt-20{
+  margin-top: 5rem;
+}
+
+.mt-16{
+  margin-top: 4rem;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
 }
 
 .block{
@@ -953,6 +996,18 @@ video {
   width: 100vw;
 }
 
+.w-40{
+  width: 10rem;
+}
+
+.w-2\/5{
+  width: 40%;
+}
+
+.w-3\/5{
+  width: 60%;
+}
+
 .min-w-80{
   min-width: 20rem;
 }
@@ -1061,6 +1116,10 @@ video {
 
 .grid-rows-5{
   grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+
+.grid-rows-12{
+  grid-template-rows: repeat(12, minmax(0, 1fr));
 }
 
 .flex-row{
@@ -1354,10 +1413,6 @@ video {
   --tw-border-opacity: 0.3;
 }
 
-.border-opacity-50{
-  --tw-border-opacity: 0.5;
-}
-
 .border-opacity-55{
   --tw-border-opacity: 0.55;
 }
@@ -1622,11 +1677,6 @@ video {
   background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
-.bg-slate-100{
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
-}
-
 .bg-slate-200{
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
@@ -1813,10 +1863,6 @@ video {
   padding-bottom: 0.625rem;
 }
 
-.pb-3{
-  padding-bottom: 0.75rem;
-}
-
 .pl-10{
   padding-left: 2.5rem;
 }
@@ -1855,6 +1901,10 @@ video {
 
 .text-right{
   text-align: right;
+}
+
+.align-middle{
+  vertical-align: middle;
 }
 
 .font-anton{
@@ -2316,11 +2366,6 @@ video {
 .hover\:bg-gray-50:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray-700:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-green-600:hover{

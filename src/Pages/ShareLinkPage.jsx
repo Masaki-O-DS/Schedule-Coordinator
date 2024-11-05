@@ -1,21 +1,21 @@
-import { nanoid } from "nanoid";
 import React from "react";
 import Header from "../Components/Header";
 import Lottie from "lottie-react";
 import animationData from "../ThankyouAnimation.json";
 import useNavigation from "../hooks/useNavigation";
+import { useSelector } from "react-redux";
 
 const ShareLinkPage = () => {
-  const uniqueURLID = nanoid();
-  const shareURL = `${window.location.origin}/share/${uniqueURLID}`;
+  const { id } = useSelector((state) => state.schedule);
   const { openTopPage } = useNavigation();
+  const url = `${window.location.origin}/shared/${id}`;
 
   const onClickToNextPage = () => {
     openTopPage();
   };
   const handleShare = () => {
     navigator.clipboard
-      .writeText(shareURL)
+      .writeText(url)
       .then(() => {
         alert("URLがクリップボードにコピーされました！");
       })
@@ -44,7 +44,7 @@ const ShareLinkPage = () => {
           </p>
           <div className="flex justify-center w-full h-20">
             <p className="border-solid rounded border border-gray-400 p-1.5 h-10 w-2/4 text-center ">
-              {shareURL}
+              {url}
             </p>
             <button
               onClick={handleShare}

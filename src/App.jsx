@@ -6,6 +6,7 @@ import TopPage from "./Pages/TopPage";
 import { EditSchedulePage } from "./Pages/EditSchedulePage";
 import SelectDatePage from "./Pages/SelectDatePage";
 import ShareLinkPage from "./Pages/ShareLinkPage";
+import SharedPage from "./Pages/SharedPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           ></Route>
           <Route path="/select-date-page" element={<SelectDatePage />}></Route>
           <Route path="/share-link-page" element={<ShareLinkPage />}></Route>
+          <Route path="/shared/:id" element={<SharedPage />}></Route>
         </Routes>
       </div>
     </Router>
