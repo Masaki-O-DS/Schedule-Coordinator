@@ -1,16 +1,17 @@
-// features/scheduleSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dayList: [],
   selectTime: {},
-  id: "",
+  name: "",
+  eventId: "",
 };
-
-const scheduleSlice = createSlice({
-  name: "schedule",
+//管理者のスケジュール
+const adminScheduleSlice = createSlice({
+  name: "adminSchedule",
   initialState,
   reducers: {
+    //Daylistをセットする
     setDayList: (state, action) => {
       state.dayList = action.payload;
     },
@@ -31,12 +32,15 @@ const scheduleSlice = createSlice({
         state.selectTime[date] = { selectTimeList: timeList };
       }
     },
-    setID: (state, action) => {
-      state.id = action.payload;
+    setName: (state, action) => {
+      state.name = action.payload;
+    },
+    setEventId: (state, action) => {
+      state.eventId = action.payload;
     },
   },
 });
 
-export const { setDayList, addDate, setSelectDateTime, setID } =
-  scheduleSlice.actions;
-export default scheduleSlice.reducer;
+export const { setDayList, addDate, setSelectDateTime, setName, setEventId } =
+  adminScheduleSlice.actions;
+export default adminScheduleSlice.reducer;

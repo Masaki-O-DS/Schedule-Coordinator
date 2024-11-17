@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import SelectionArea from "@viselect/react";
 import { dayStrToDateObj } from "../utils/time";
-import { useDispatch, useSelector } from "react-redux";
-import { setSelectDateTime } from "../features/schedule";
+import { useDispatch } from "react-redux";
 
-const Selection = ({ date }) => {
+const Selection = ({ date, selectTime, setSelectDateTime }) => {
   const [selected, setSelected] = useState(() => new Set());
   // const { selectTimeList } = useSelector(
   //   (state) => state.schedule.selectTime[date] || { selectTimeList: [] }
   // );
-  const selectTime = useSelector((state) => state.schedule.selectTime);
 
   const { month, day } = dayStrToDateObj(date);
   const dispatch = useDispatch();
@@ -18,11 +16,9 @@ const Selection = ({ date }) => {
     const selectTimeArray = Array.from(selected);
     const transformedTimeList = selectTimeArray.map((id) => id + 9);
     dispatch(setSelectDateTime({ date, timeList: transformedTimeList }));
-  }, [dispatch, date, selected]);
+  }, [dispatch, date, selected, setSelectDateTime]);
 
-  useEffect(() => {
-    console.log("Updated selectTime:", selectTime);
-  }, [selectTime]);
+  useEffect(() => {}, [selectTime]);
 
   const startTime = 9;
   const endTime = 24;

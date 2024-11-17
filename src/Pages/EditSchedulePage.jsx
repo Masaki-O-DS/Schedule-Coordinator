@@ -5,12 +5,14 @@ import useNavigation from "../hooks/useNavigation";
 import Header from "../Components/Header";
 import SummaryTable from "../Components/SummaryTable";
 import { useDispatch, useSelector } from "react-redux";
-import { addDate } from "../features/schedule";
+import { addDate } from "../features/adminSchedule";
 import {
   setEventContentToRedux,
   setEventNameToRedux,
   setMembersToRedux,
 } from "../features/eventDetails";
+
+//管理者がスケジュールの概要を選択入力するページ
 
 export const EditSchedulePage = () => {
   const [eventName, setEventName] = useState("");
@@ -19,20 +21,24 @@ export const EditSchedulePage = () => {
   const [members, setMembers] = useState([]);
   const { openSelectDatePage } = useNavigation();
   const dispatch = useDispatch();
-  const { dayList } = useSelector((state) => state.schedule);
+  const { dayList } = useSelector((state) => state.adminSchedule);
 
+  //イベント名を記入
   const handleInputEventName = (e) => {
     setEventName(e.target.value);
   };
 
+  //イベント内容を記入
   const handleInputEventContent = (e) => {
     setEventContent(e.target.value);
   };
 
+  //イベント参加メンバー名を記入
   const handleInputMember = (e) => {
     setMemberName(e.target.value);
   };
 
+  //handleInputMemberで記入されたメンバーを追加
   const onAddMember = () => {
     if (memberName !== "") {
       setMembers([...members, memberName]);
@@ -40,11 +46,13 @@ export const EditSchedulePage = () => {
     }
   };
 
+  //メンバーから削除
   const handleDeleteMemberList = (deleteMember) => {
     const newMembers = members.filter((member) => member !== deleteMember);
     setMembers(newMembers);
   };
 
+  //クリックして、次のページへ
   const onClickToNextPage = () => {
     dispatch(setEventNameToRedux(eventName));
     dispatch(setEventContentToRedux(eventContent));

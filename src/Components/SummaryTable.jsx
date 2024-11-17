@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { dayStrToDateObj } from "../utils/time";
 
 const SummaryTable = ({ eventName, eventContent, members }) => {
-  const { dayList } = useSelector((state) => state.schedule);
+  const { dayList } = useSelector((state) => state.adminSchedule);
   return (
     <>
       <div className="w-11/12 h-5/6 bg-white flex border-2 border-solid rounded-lg border-gray-500 border-opacity-55 p-5 ">

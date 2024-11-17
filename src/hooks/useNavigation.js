@@ -6,11 +6,20 @@ export default function useNavigation() {
   const openSelectDatePage = () => navigate("/select-date-page");
   const openShareLinkPage = () => navigate("/share-link-page");
   const openTopPage = () => navigate("/");
+  const openEditSchedulePageVisitor = () =>
+    navigate("/visitor-edit-schedule-page");
+  const openThankyouPage = () => navigate("/thankyou-page");
+  const openTimeManagementPage = () => navigate("/time-management-page");
+  const openConfirmPage = () => navigate("/confirm-page");
 
   return {
     openEditSchedulePage,
     openSelectDatePage,
     openShareLinkPage,
     openTopPage,
+    openEditSchedulePageVisitor,
+    openThankyouPage,
+    openTimeManagementPage,
+    openConfirmPage,
   };
 }

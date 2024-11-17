@@ -15,6 +15,9 @@ const PostSignInButtons = () => {
     signInWithPopup(auth, provider).then((result) => {
       sessionStorage.setItem("isAuth", true);
       dispatch(setName(result.user.displayName));
+      const adminID = auth.currentUser.uid;
+      console.log("管理者のUID", adminID);
+      sessionStorage.setItem("adminID", adminID);
       dispatch(setLogin());
     });
   };

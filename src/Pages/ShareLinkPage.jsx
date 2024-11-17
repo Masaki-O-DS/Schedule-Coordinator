@@ -3,21 +3,31 @@ import Header from "../Components/Header";
 import Lottie from "lottie-react";
 import animationData from "../ThankyouAnimation.json";
 import useNavigation from "../hooks/useNavigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearState, setUrl } from "../features/adminSchedule";
 
+//管理者がメンバーにシェアする用のURLが表示されるページ
 const ShareLinkPage = () => {
-  const { id } = useSelector((state) => state.schedule);
+  const dispatch = useDispatch();
+  const { eventId } = useSelector((state) => state.adminSchedule);
+  const adminID = sessionStorage.getItem("adminID");
   const { openTopPage } = useNavigation();
-  const url = `${window.location.origin}/shared/${id}`;
+  console.log(`${window.location.origin}/shared/${adminID}/${eventId}`);
+  const url = `${window.location.origin}/shared/${adminID}/${eventId}`;
 
+  //TOPページへ
   const onClickToNextPage = () => {
+    dispatch(clearState());
     openTopPage();
   };
+
+  //ボタンを押したらクリップボードにコピー
   const handleShare = () => {
     navigator.clipboard
       .writeText(url)
       .then(() => {
         alert("URLがクリップボードにコピーされました！");
+        dispatch(setUrl(url));
       })
       .catch((err) => {
         console.error("URLのコピーに失敗しました:", err);
@@ -43,7 +53,7 @@ const ShareLinkPage = () => {
             以下のリンクを参加メンバーと共有し、日程を記入していただいてください
           </p>
           <div className="flex justify-center w-full h-20">
-            <p className="border-solid rounded border border-gray-400 p-1.5 h-10 w-2/4 text-center ">
+            <p className="border-solid rounded border border-gray-400 p-1.5 h-10 w-2/4 text-center overflow-x-scroll">
               {url}
             </p>
             <button
