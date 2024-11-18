@@ -71,7 +71,7 @@ const PostSignInButtons = () => {
     <div className="  bg-white flex w-2/4 flex-col items-center justify-around h-3/4 ">
       <p className="text-black font-bold text-2xl">ようこそ{name}様</p>
       <Button
-        text={"新たに日程調整を始まる"}
+        text={"新たに日程調整を始める"}
         addCss={addCss}
         onClickFunc={onClickToEditSchedulePage}
       />

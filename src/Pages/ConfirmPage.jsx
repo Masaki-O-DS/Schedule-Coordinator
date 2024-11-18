@@ -39,7 +39,6 @@ const ConfirmPage = () => {
         console.log("管理者の予定を取り込めてない", error);
       }
       try {
-        console.log("visitorsData.visitorsは何もの？", visitorsData);
         visitorsData.visitors.map((visitor) => {
           console.log("visitor", visitor);
           const visitorSelectTime = visitor.selectTime[date]; //各visitorから同じ日付のselectTimeListを追加
@@ -64,24 +63,39 @@ const ConfirmPage = () => {
 
   const mergedSchedule = mergeSelectTimeLists(adminSchedule, visitorInfo);
   console.log("mergedSchedule", mergedSchedule);
-  console.log("mergedSchedule", mergedSchedule);
+  console.log("mergedSchedule", visitorInfo);
 
   //visitorの情報がなかったらどうするのかをまだ誰も記入していないということを表示する
 
   return (
     <div className="h-screen w-screen">
       <Header />
-      <div className="h-20 w-full flex flex-col justify-center items-center">
-        <div>イベント名：{adminSchedule.eventName}</div>
-        <div className="flex ">
-          招待済みメンバー：
-          {adminSchedule.members.map((member, index) => (
-            <p key={index} className="mx-2">
-              {member}
-            </p>
-          ))}
+      <div className="flex justify-center items-center">
+        <div className="h-20 w-2/4 flex justify-center items-center border-2 border-solid rounded-xl m-4 ">
+          <div className="w-2/4 text-end mr-4">
+            イベント名：{adminSchedule.eventName}
+          </div>
+          <div className="w-2/4 flex flex-col justify-center items-start ml-4">
+            <div className="flex text-center">
+              招待済みメンバー：
+              {adminSchedule.members.map((member, index) => (
+                <p key={index} className="mx-2">
+                  {member}
+                </p>
+              ))}
+            </div>
+            <div className="flex  text-center">
+              記入済みメンバー：
+              {visitorInfo.visitors.map((member, index) => (
+                <p key={index} className="mx-2">
+                  {member.name}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
       <div className="w-auto flex items-center justify-around">
         {Object.keys(mergedSchedule)
           .sort((a, b) => new Date(a) - new Date(b))
