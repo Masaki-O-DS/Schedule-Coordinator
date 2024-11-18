@@ -36,13 +36,13 @@ const adminScheduleSlice = createSlice({
     setEventId: (state, action) => {
       state.eventId = action.payload;
     },
-    clearState: (state) => {
+    clearAdminState: (state) => {
       state.dayList = [];
       state.selectTime = {};
       state.eventId = "";
-      state.adminID = "";
       state.url = "";
       state.allScheduleList = [];
+      state.selectIndex = null;
     },
     setUrl: (state, action) => {
       state.url = action.payload;
@@ -61,7 +61,7 @@ export const {
   addDate,
   setSelectDateTime,
   setEventId,
-  clearState,
+  clearAdminState,
   setUrl,
   setAllScheduleList,
   setSelectIndex,

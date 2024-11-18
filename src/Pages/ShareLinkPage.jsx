@@ -4,22 +4,22 @@ import Lottie from "lottie-react";
 import animationData from "../ThankyouAnimation.json";
 import useNavigation from "../hooks/useNavigation";
 import { useDispatch, useSelector } from "react-redux";
-import { clearState, setUrl } from "../features/adminSchedule";
+import { clearAdminState, setUrl } from "../features/adminSchedule";
 
 //管理者がメンバーにシェアする用のURLが表示されるページ
 const ShareLinkPage = () => {
   const dispatch = useDispatch();
   const { eventId } = useSelector((state) => state.adminSchedule);
   const adminID = sessionStorage.getItem("adminID");
-  const { openTopPage } = useNavigation();
+  // const { openTopPage } = useNavigation();
   console.log(`${window.location.origin}/shared/${adminID}/${eventId}`);
   const url = `${window.location.origin}/shared/${adminID}/${eventId}`;
 
   //TOPページへ
-  const onClickToNextPage = () => {
-    dispatch(clearState());
-    openTopPage();
-  };
+  // const onClickToNextPage = () => {
+  //   dispatch(clearAdminState());
+  //   openTopPage();
+  // };
 
   //ボタンを押したらクリップボードにコピー
   const handleShare = () => {
@@ -63,12 +63,12 @@ const ShareLinkPage = () => {
               コピー
             </button>
           </div>
-          <button
+          {/* <button
             onClick={onClickToNextPage}
             className="bg-slate-200 rounded px-4 py-0.5 h-10 hover:bg-amber-600 hover:text-white hover:font-bold duration-100 active:scale-90"
           >
             TOPへ
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

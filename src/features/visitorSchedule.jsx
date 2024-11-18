@@ -6,8 +6,9 @@ const initialState = {
   name: "",
   eventId: "",
 };
+
 //管理者のスケジュール
-const adminScheduleSlice = createSlice({
+const visitorScheduleSlice = createSlice({
   name: "adminSchedule",
   initialState,
   reducers: {
@@ -38,9 +39,21 @@ const adminScheduleSlice = createSlice({
     setEventId: (state, action) => {
       state.eventId = action.payload;
     },
+    clearVisitorState: (state, action) => {
+      state.dayList = [];
+      state.selectTime = {};
+      state.name = "";
+      state.eventId = "";
+    },
   },
 });
 
-export const { setDayList, addDate, setSelectDateTime, setName, setEventId } =
-  adminScheduleSlice.actions;
-export default adminScheduleSlice.reducer;
+export const {
+  setDayList,
+  addDate,
+  setSelectDateTime,
+  setName,
+  setEventId,
+  clearVisitorState,
+} = visitorScheduleSlice.actions;
+export default visitorScheduleSlice.reducer;

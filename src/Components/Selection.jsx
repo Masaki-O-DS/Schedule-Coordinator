@@ -14,7 +14,7 @@ const Selection = ({ date, selectTime, setSelectDateTime }) => {
 
   useEffect(() => {
     const selectTimeArray = Array.from(selected);
-    const transformedTimeList = selectTimeArray.map((id) => id + 9);
+    const transformedTimeList = selectTimeArray.map((id) => id);
     dispatch(setSelectDateTime({ date, timeList: transformedTimeList }));
   }, [dispatch, date, selected, setSelectDateTime]);
 
@@ -26,6 +26,7 @@ const Selection = ({ date, selectTime, setSelectDateTime }) => {
   for (let i = startTime; i <= endTime; i++) {
     timeList.push(i);
   }
+  // console.log(timeList);
 
   const extractIds = (els) =>
     els
@@ -47,25 +48,26 @@ const Selection = ({ date, selectTime, setSelectDateTime }) => {
   };
 
   return (
-    <div className="flex flex-col w-full p-2 justify-center items-center">
+    <div className="flex flex-col w-full p-2 justify-center items-center select-none">
       <p>
         {month + 1}/{day}
       </p>
       <SelectionArea
-        className="bg-blue-300 h-full w-full"
+        className="bg-blue-100 border-2 border-blue-500 rounded-md w-full"
         onMove={onMove}
         selectables=".selectable"
       >
         <div className="grid grid-cols-1 text-center">
           {timeList.map((time, index) => (
             <div
-              className={
-                selected.has(index)
+              className={`${
+                selected.has(time)
                   ? "selectable w-full h-auto bg-gray-700 border border-gray-800"
                   : "selectable w-full h-auto bg-gray-100 border border-gray-300"
               }
-              data-key={index}
-              key={index}
+              `}
+              data-key={time}
+              key={time}
             >
               {time}時
             </div>
