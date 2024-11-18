@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# 🗓️スケジュール調整アプリ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## アプリの概要
 
-## Available Scripts
+### アプリの目的
 
-In the project directory, you can run:
+グループでミーティングや勉強会を開催するとき、主催者は日程の調整を行うためによく知られている「調整さん」や「伝助」などのサービスを用いることが多いと思います。
 
-### `npm start`
+これらのサービスは候補日程を設定できますが、日付単位（例：10/12、10/13、10/14）や時間帯（例：10/12 18:00〜、10/13 18:00〜）を設定するのが煩雑になることがあります。また、チーム全員に参加してほしいにも関わらず、調整の結果、全員が参加できる時間帯が見つからない場合、再度調整を行う必要があります。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+これを改善するため、入力を簡単にし、全員の空いている時間を一度に見つけられるサービスがあれば便利だと思い、作成しようと考えました。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ターゲットユーザー
 
-### `npm test`
+イベントに全員が参加してほしいと考えている主催者の方
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+　　　　　　　　　伝助　イベント作成画面 (https://www.densuke.biz/)
 
-### `npm run build`
+![スクリーンショット 2024-11-18 17.28.55.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c1b1b7fd-c570-418a-b8f0-f2ea29932fdc/a9689723-b1b4-49f7-9d07-9f864489049b/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2024-11-18_17.28.55.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+　　　　　　　　　調整さん　イベント作成画面(https://chouseisan.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![スクリーンショット 2024-11-18 17.29.47.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c1b1b7fd-c570-418a-b8f0-f2ea29932fdc/b26403b9-8c4b-43f4-affe-7320e3ecac91/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2024-11-18_17.29.47.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 主な機能
 
-### `npm run eject`
+- 日程調整者のイベント設定
+- メンバーの登録
+- 全員の日程を考慮し、全員が空いている時間帯を一目で把握できる機能
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 技術スタック
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+プログラミング言語：JavaScript
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+フロントエンド
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- React
+- React-Router
+- React-Redux
+- Date Picker (カレンダー表示&日付選択)
+- ViSelect (ドラッグ&ドロップによる選択操作)
+- Lottie Animations (アニメーション)
+- Nanoid (ユニークなID生成)
 
-## Learn More
+スタイリング
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- TailwindCSS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+バックエンド
 
-### Code Splitting
+- Firebase
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## 今後の展望
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 各メンバーの選択した日程（参加できない時間）を確認できる機能の追加
+- Googleカレンダーに予定を自動で反映させる機能の実装
+- 現在は主催者を含めて11人以内のチームにしか対応していないため、より多くの人数でも使用できるようにする
+- 主催者がメンバーを登録するのではなく、各参加者が自分の名前を入力できるようにし、主催者の負担を軽減する
+- 未記入のメンバーが誰かが一目でわかるよう表示
