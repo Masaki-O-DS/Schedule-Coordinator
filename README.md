@@ -14,14 +14,6 @@
 
 イベントに全員が参加してほしいと考えている主催者の方
 
-　　　　　　　　　伝助　イベント作成画面 (https://www.densuke.biz/)
-
-![スクリーンショット 2024-11-18 17.28.55.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c1b1b7fd-c570-418a-b8f0-f2ea29932fdc/a9689723-b1b4-49f7-9d07-9f864489049b/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2024-11-18_17.28.55.png)
-
-　　　　　　　　　調整さん　イベント作成画面(https://chouseisan.com/)
-
-![スクリーンショット 2024-11-18 17.29.47.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c1b1b7fd-c570-418a-b8f0-f2ea29932fdc/b26403b9-8c4b-43f4-affe-7320e3ecac91/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2024-11-18_17.29.47.png)
-
 ## 主な機能
 
 - 日程調整者のイベント設定
